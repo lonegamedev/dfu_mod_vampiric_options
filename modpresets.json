@@ -1,0 +1,19 @@
+[
+    {
+        "Title": "Recommended",
+        "Author": "lonegamedev",
+        "Description": "Makes playing vampire character more fun (probably).",
+        "SettingsVersion": "0.5.0",
+        "Values": {
+            "Visual": {
+                "PortraitAssets": "1",
+                "PortraitSwap": "1"
+            },
+            "Gameplay": {
+                "BloodlustAnxiety": "1",
+                "DaysToBloodlust": "3"
+            }
+        },
+        "$version": "v1"
+    }
+]

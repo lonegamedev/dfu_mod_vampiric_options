@@ -1,0 +1,65 @@
+{
+    "Version": "0.5.0",
+    "Sections": [
+        {
+            "Name": "Visual",
+            "Description": "Modify visual aspects of the vampire experience.",
+            "IsAdvanced": false,
+            "Keys": [
+                {
+                    "Options": [
+                        "Always (Vanilla)",
+                        "During Bloodlust",
+                        "Never"
+                    ],
+                    "Value": 0,
+                    "Name": "PortraitSwap",
+                    "Description": "When character portrait should be replaced by a vampiric portrait.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.MultipleChoiceKey"
+                },
+                {
+                    "Options": [
+                        "Vanilla",
+                        "Custom"
+                    ],
+                    "Value": 0,
+                    "Name": "PortraitAssets",
+                    "Description": "Which vampiric portraits should be used.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.MultipleChoiceKey"
+                }
+            ],
+            "$version": "v1"
+        },
+        {
+            "Name": "Gameplay",
+            "Description": "Modify gameplay aspects of the vampire experience.",
+            "IsAdvanced": false,
+            "Keys": [
+                {
+                    "Options": [
+                        "Severe (Vanila) - Can't Rest, Can't Loiter",
+                        "Moderate - Can't Rest, Can Loiter",
+                        "None - Can Rest, Can Loiter"
+                    ],
+                    "Value": 0,
+                    "Name": "BloodlustAnxiety",
+                    "Description": "Modifies resting and loitering rules during a bloodlust.",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.MultipleChoiceKey"
+                },
+                {
+                    "Min": 1,
+                    "Max": 30,
+                    "Value": 1,
+                    "Name": "DaysToBloodlust",
+                    "Description": "How long sating a bloodlust lasts (Vanilla = 1 day)",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderIntKey"
+                }
+            ],
+            "$version": "v1"
+        }
+    ]
+}
