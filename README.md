@@ -20,7 +20,7 @@ All options are set to vanilla by default, so remember to adjust before starting
 
 ## Requirements
 
-[Requires DaggerfallUnity v0.10.24+]
+[Requires DaggerfallUnity v0.10.26+]
 
 ## Installation:
 
