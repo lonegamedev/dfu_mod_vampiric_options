@@ -1,9 +1,9 @@
 {
     "ModTitle": "Vampiric Options",
-    "ModVersion": "0.55",
+    "ModVersion": "0.80",
     "ModAuthor": "lonegamedev.com",
     "ContactInfo": "official@lonegamedev.com",
-    "DFUnity_Version": "0.10.26",
+    "DFUnity_Version": "0.10.27",
     "ModDescription": "Visual and gameplay options for vampiric characters.",
     "GUID": "f94fc842-4c0a-4594-8ffb-332b57744250",
     "Files": [

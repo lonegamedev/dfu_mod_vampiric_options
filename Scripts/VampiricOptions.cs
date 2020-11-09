@@ -1,18 +1,8 @@
 ﻿using UnityEngine;
-using System.IO;
 using System.Collections;
-using System.Collections.Generic;
 
 using DaggerfallWorkshop;
-using DaggerfallConnect;
-using DaggerfallWorkshop.Utility;
-using DaggerfallWorkshop.Utility.AssetInjection;
 using DaggerfallWorkshop.Game;
-using DaggerfallWorkshop.Game.Banking;
-using DaggerfallWorkshop.Game.Entity;
-using DaggerfallWorkshop.Game.Formulas;
-using DaggerfallWorkshop.Game.Serialization;
-using DaggerfallWorkshop.Game.UserInterface;
 using DaggerfallWorkshop.Game.UserInterfaceWindows;
 using DaggerfallWorkshop.Game.Utility.ModSupport;
 using DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings;
@@ -57,8 +47,9 @@ namespace LGDmods
             public const int None = 2;
         }
 
+        public const int notSatedTextID = 36;
+
         public static void ShowNotSatedPopup() {
-            const int notSatedTextID = 36;
             DaggerfallMessageBox mb = new DaggerfallMessageBox(DaggerfallUI.Instance.UserInterfaceManager);
             mb.PreviousWindow = DaggerfallUI.Instance.UserInterfaceManager.TopWindow;
             mb.ClickAnywhereToClose = true;
@@ -66,17 +57,45 @@ namespace LGDmods
             mb.Show();
         }
 
+        protected static bool PreventRestCondition() {
+            if (DaggerfallUI.Instance.UserInterfaceManager.TopWindow is VampiricRestWindow) {
+                VampiricRestWindow vrw = (VampiricRestWindow)DaggerfallUI.Instance.UserInterfaceManager.TopWindow;
+                if (vrw.IsResting()) {
+                    switch (VampiricOptions.mod_settings.GetValue<int>(VampiricOptions.Names.Gameplay, VampiricOptions.Names.BloodlustAnxiety)) {
+                        case VampiricOptions.BloodlustAnxiety.Moderate:
+                            RacialOverrideEffect racialEffect = GameManager.Instance.PlayerEffectManager.GetRacialOverrideEffect();
+                            if (racialEffect is VampiricOptionsEffect) {
+                                VampiricOptionsEffect vampiricEffect = (VampiricOptionsEffect)racialEffect;
+                                if (vampiricEffect.isBloodlust()) {
+                                    return true;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            return false;
+        }
+
         [Invoke(StateManager.StateTypes.Start, 0)]
         public static void Init(InitParams initParams)
         {
             mod = initParams.Mod;
             mod_settings = mod.GetSettings();
-            if(mod_settings == null) {
+
+            if (mod_settings == null) {
                 return;
             }
+
             VampiricFaces.Load();
+
             GameManager.Instance.EntityEffectBroker.RegisterEffectTemplate((new VampiricOptionsEffect()), true);
             UIWindowFactory.RegisterCustomUIWindow(UIWindowType.Rest, typeof(VampiricRestWindow));
+            GameManager.Instance.RegisterPreventRestCondition(
+                PreventRestCondition,
+                DaggerfallUnity.Instance.TextProvider.GetText(notSatedTextID)
+            );
+
             mod.IsReady = true;
         }
     }
