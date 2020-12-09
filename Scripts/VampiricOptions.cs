@@ -57,16 +57,25 @@ namespace LGDmods
             mb.Show();
         }
 
+        protected static bool IsPlayerResting() {
+            switch (GameManager.Instance.PlayerEntity.CurrentRestMode) {
+                case DaggerfallRestWindow.RestModes.Selection:
+                case DaggerfallRestWindow.RestModes.Loiter:
+                  return false;
+            }
+            return true;
+        }
+
         protected static bool PreventRestCondition() {
-            if (DaggerfallUI.Instance.UserInterfaceManager.TopWindow is VampiricRestWindow) {
-                VampiricRestWindow vrw = (VampiricRestWindow)DaggerfallUI.Instance.UserInterfaceManager.TopWindow;
-                if (vrw.IsResting()) {
+            if (DaggerfallUI.Instance.UserInterfaceManager.TopWindow is DaggerfallRestWindow) {
+                if (IsPlayerResting()) {
                     switch (VampiricOptions.mod_settings.GetValue<int>(VampiricOptions.Names.Gameplay, VampiricOptions.Names.BloodlustAnxiety)) {
                         case VampiricOptions.BloodlustAnxiety.Moderate:
                             RacialOverrideEffect racialEffect = GameManager.Instance.PlayerEffectManager.GetRacialOverrideEffect();
                             if (racialEffect is VampiricOptionsEffect) {
                                 VampiricOptionsEffect vampiricEffect = (VampiricOptionsEffect)racialEffect;
                                 if (vampiricEffect.isBloodlust()) {
+                                    GameManager.Instance.PlayerEntity.CurrentRestMode = DaggerfallRestWindow.RestModes.Selection;
                                     return true;
                                 }
                             }
@@ -90,7 +99,7 @@ namespace LGDmods
             VampiricFaces.Load();
 
             GameManager.Instance.EntityEffectBroker.RegisterEffectTemplate((new VampiricOptionsEffect()), true);
-            UIWindowFactory.RegisterCustomUIWindow(UIWindowType.Rest, typeof(VampiricRestWindow));
+            //UIWindowFactory.RegisterCustomUIWindow(UIWindowType.Rest, typeof(VampiricRestWindow));
             GameManager.Instance.RegisterPreventRestCondition(
                 PreventRestCondition,
                 DaggerfallUnity.Instance.TextProvider.GetText(notSatedTextID)

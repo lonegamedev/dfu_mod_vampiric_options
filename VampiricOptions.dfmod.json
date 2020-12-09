@@ -1,16 +1,15 @@
 {
     "ModTitle": "Vampiric Options",
-    "ModVersion": "0.80",
+    "ModVersion": "0.90",
     "ModAuthor": "lonegamedev.com",
     "ContactInfo": "official@lonegamedev.com",
-    "DFUnity_Version": "0.10.27",
+    "DFUnity_Version": "0.10.28",
     "ModDescription": "Visual and gameplay options for vampiric characters.",
     "GUID": "f94fc842-4c0a-4594-8ffb-332b57744250",
     "Files": [
         "Assets/Game/Mods/vampiric_options/modpresets.json",
         "Assets/Game/Mods/vampiric_options/VampiricOptions.dfmod.json",
         "Assets/Game/Mods/vampiric_options/modsettings.json",
-        "Assets/Game/Mods/vampiric_options/Scripts/VampiricRestWindow.cs",
         "Assets/Game/Mods/vampiric_options/Scripts/VampiricOptions.cs",
         "Assets/Game/Mods/vampiric_options/Scripts/VampiricFaces.cs",
         "Assets/Game/Mods/vampiric_options/Scripts/VampiricOptionsEffect.cs",

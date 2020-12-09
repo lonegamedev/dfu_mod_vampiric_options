@@ -1,9 +1,15 @@
 # Vampiric Options
 
-This mod makes playing a vampire character arguably enjoyable, by providing proper vampire character portraits and options to improve annoying bloodlust mechanic.
+This mod makes playing a vampire character arguably enjoyable, by providing proper vampire character portraits and options to improve annoying vanilla bloodlust mechanics.
 
 ![Title Bar](https://staticdelivery.nexusmods.com/mods/2927/images/headers/67_1595257428.jpg)
 
+## Changelog (v0.90):
+* Better compatibility with other mods. The DaggerallRestWindow override is no longer required,
+so this should fix any compatibility issues with mods that tinker with the loiter/rest mechanics.
+
+## Changelog (v0.80):
+* Ability to override custom vampiric portraits.
 
 ## Changelog (v0.51):
 
@@ -20,7 +26,7 @@ All options are set to vanilla by default, so remember to adjust before starting
 
 ## Requirements
 
-[Requires DaggerfallUnity v0.10.26+]
+[Requires DaggerfallUnity v0.10.27+]
 
 ## Installation:
 
